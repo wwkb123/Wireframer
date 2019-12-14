@@ -1,0 +1,145 @@
+.card_due_date, .card_assigned_to, .card_completed, .card_pending{
+    top:50%;
+    font-size: 18px !important;
+}
+
+.card_completed {
+    color: green;
+}
+
+.card_pending {
+    color: red;
+}
+
+.todo_list_link:hover{
+    background-color: yellow;
+}
+
+.trash {
+    margin-right: 40px;
+    font-size: 40px;
+}
+
+.list_page_title {
+    font-size: 30px;
+    padding:20px
+}
+
+.modal-footer {
+  display:none
+}
+
+.disable {
+  background-color: grey !important;
+}
+
+.trash:hover {
+color: var(--swatch-accent);
+background-color: #f6e58d;
+cursor: pointer;
+}
+.item:hover, .list:hover {
+  background-color: #f6e58d !important;
+}
+
+
+.delete-button {
+  position: absolute;
+  left: 80%;
+  top: 25%;
+  z-index: 5;
+}
+
+.tool-map {
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  padding : 1px;
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
+
+.total-toolmap {
+  margin-top: 2px !important;
+  padding: 3px;
+  height: 600px;
+}
+
+.work-input {
+  height: 1.5rem !important;
+}
+.input-field {
+  left:10%;
+  width: 80%;
+  margin-top: 3%;
+}
+.work-name-input {
+  text-align: center;
+  z-index: 10;
+}
+
+.work-container {
+  cursor: pointer;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  background-color: white;
+  height: 60px;
+}
+.work-button {
+  cursor: pointer;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  text-align: center;
+}
+.work-textfield {
+  cursor: pointer;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  background-color: white;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.work-card {
+  padding : 1px;
+  position : relative;
+  padding-top: 10%;
+  padding-left: 20%;
+  padding-right: 20%;
+  text-align: center;
+}
+.work-item-label {
+  cursor: pointer;
+  position: relative;
+  font-size: medium;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+.work-property-label {
+  position: relative;
+  font-size: medium;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+.work-properties {
+  padding-top: 10%;
+}
+
+.work-property {
+  margin-top: 0px;
+}
+
+.display-place {
+  background-color: white;
+  height: 600px;
+}
+
+.work-top-button {
+  background-color: rgba(0,0,0,0);
+  color:black;
+}
