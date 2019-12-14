@@ -18,14 +18,16 @@ class WireframeLinks extends Component{
 
     render(){
         console.log(this.props.auth.uid)
-        const wireframeLists = this.props.wireframeLists;
+        var wireframeLists = this.props.wireframeLists;
+        if(wireframeLists)
+            wireframeLists = wireframeLists.filter(wireframe => this.props.auth.uid===wireframe.owner);
         return (
             <div className="todo-lists" style={{marginTop:'50px'}}>
                 <div> Recent Work</div>
                 
-                {wireframeLists && wireframeLists.map(todoList => (
-                    <Link to={'/wireframe/' + todoList.id} key={todoList.id} onClick={this.updateTimeStamp.bind(this,todoList.id)}>
-                        <WireframeCard wireframe={todoList} open={this.handleModalOpen}/>
+                {wireframeLists && wireframeLists.map(wireframe => (
+                    <Link to={'/wireframe/' + wireframe.id} key={wireframe.id} onClick={this.updateTimeStamp.bind(this,wireframe.id)}>
+                        <WireframeCard wireframe={wireframe} open={this.handleModalOpen}/>
                     </Link>
                 ))}
             </div>
@@ -46,7 +48,6 @@ const connection = (state) => {
         { 
             collection: 'wireframeLists', 
             orderBy:['timestamp', 'desc'], 
-            where: [['owner', '==', state.auth.uid]], 
         },
       ];
 }
@@ -54,4 +55,4 @@ const connection = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect(connection ),
-)(WireframeLists);
+)(WireframeLinks);

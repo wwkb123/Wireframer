@@ -51,14 +51,14 @@ class EditScreen extends Component{
         return <Redirect to="/login" />;
     }
 
-    let work = this.props.work;
-    if(this.props.work==null){
-        work = this.state; // new work
+    let wireframe = this.props.wireframe;
+    if(this.props.wireframe == null){
+        wireframe = this.state;
     }
 
     return (
         <div className='row'>
-          <LeftTools work={work} handleSaveWork={this.handleSaveWork}/>
+          <LeftTools work={wireframe} handleSaveWork={this.handleSaveWork}/>
           <DisplayPlace/>
           <RightTools/>
         </div>
@@ -68,12 +68,12 @@ class EditScreen extends Component{
 const mapStateToProps = (state, ownProps) => {
     const { id } = ownProps.match.params;
     const { wireframeLists } = state.firestore.data;
-    const work = wireframeLists ? wireframeLists[id] : null;
-    if(work)
-      work.id=id
+    const wireframe = wireframeLists ? wireframeLists[id] : null;
+    if(wireframe)
+      wireframe.id=id
   
     return {
-      work,
+      wireframe: wireframe,
       auth: state.firebase.auth,
     };
   };
