@@ -6,7 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
 
 import Logo from './Logo'
-import WireframeLists from './WireframeLists';
+import WireframeLinks from './WireframeLinks';
 class HomeScreen extends Component {
     handleNewList = () => {
         this.props.history.push('/work/new');
@@ -21,7 +21,7 @@ class HomeScreen extends Component {
             <div className="dashboard container">
                 <div className="row">
                     <div className="col s12 m4">
-                    <WireframeLists/>
+                    <WireframeLinks/>
                     </div>
 
                     <div className="col s8">
