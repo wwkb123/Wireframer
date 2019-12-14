@@ -34,75 +34,75 @@ class LeftTools extends Component{
         }));
     }
 
-    handleSaveWork = () => {
-        this.props.handleSaveWork(this.state);
+    handleSaveWireframe = () => {
+        this.props.handleSaveWireframe(this.state);
         this.handleModalClose();
     }
     
 
     handleInitState = () =>{
-        if(this.state.name===null && this.props.work.name)
+        if(this.state.name===null && this.props.wireframe.name)
         // eslint-disable-next-line
-            this.state.name=this.props.work.name?this.props.work.name:"";
+            this.state.name=this.props.wireframe.name?this.props.wireframe.name:"";
         if(this.state.owner===null && this.props.auth.uid)
         // eslint-disable-next-line
             this.state.owner=this.props.auth.uid?this.props.auth.uid:"";
     }
 
     render(){
-        const { work } = this.props;
+        const { wireframe } = this.props;
         this.handleInitState();
         return (
-            <div className="col s3 total-toolmap" >
-                <div className= "tool-map row" style={{height:"6.5%"}}>
+            <div className="col s3 total-tool" >
+                <div className= "tool row" style={{height:"6.5%"}}>
                 <Button small 
                     waves="red"
                     node="button" 
-                    className="col s3 work-top-button" 
+                    className="col s3 wireframe-top-button" 
                     icon={<Icon>zoom_in</Icon>} >  
                 </Button>
                 <Button small 
                     waves="green"
                     node="button" 
-                    className="col s3 work-top-button" 
+                    className="col s3 wireframe-top-button" 
                     icon={<Icon>zoom_out</Icon>}>  
                 </Button>
                 <Button small 
                     waves="purple"
                     node="button" 
-                    className="col s3 work-top-button" 
+                    className="col s3 wireframe-top-button" 
                     onClick={this.handleModalOpen}>Save
                 </Button>
                 <Button small 
                     waves="teal"
                     node="button" 
-                    className="col s3 work-top-button">Close
+                    className="col s3 wireframe-top-button">Close
                 </Button>
                 <Modal
                 bottomSheet={false}
                 fixedFooter={false}
-                header="Save Work?"
-                id={"modal-"+work.id}
+                header="Save Wireframe?"
+                id={"modal-"+wireframe.id}
                 open={this.state.modalActive}
                 style={{maxHeight:'none'}}
                 options={{
                     dismissible: false,
                     endingTop: '10%',
-                    inDuration: 250,
+                    inDuration: 200,
                     onCloseEnd: null,
                     onCloseStart: null,
                     onOpenEnd: null,
                     onOpenStart: null,
                     opacity: 0.5,
-                    outDuration: 250,
+                    outDuration: 200,
                     preventScrolling: false,
-                    startingTop: '4%'
+                    startingTop: '5%'
                 }}
                 >
                     <section className="dialog_content">
-                        <p><strong>Are you sure you want to save this work?</strong></p>
+                        <p><strong>Are you sure you want to save this wireframe?</strong></p>
                     </section>
-                        <Button waves="orange" id="dialog_yes_button" className='btn' onClick={this.handleSaveWork}>Yes</Button>
+                        <Button waves="orange" id="dialog_yes_button" className='btn' onClick={this.handleSaveWireframe}>Yes</Button>
                         <Button waves="yellow" id="dialog_no_button" className='btn' onClick={this.handleModalClose}>No</Button>
                     <footer className="dialog_footer">
                         The list will not be retreivable.
@@ -110,27 +110,27 @@ class LeftTools extends Component{
                 </Modal>
                 </div>
 
-                <div className="tool-map row" style={{height:"93.5%"}}>
-                    <div className="work-name-input">
-                        <div className="work-property-label">Work Name</div>
-                        <TextInput placeholder="Insert here" className="work-input" id='name' value={this.state.name?this.state.name:""}
+                <div className="tool row" style={{height:"93.5%"}}>
+                    <div className="wireframe-name-input">
+                        <div className="wireframe-property-label">Wireframe Name</div>
+                        <TextInput placeholder="Insert here" className="wireframe-input" id='name' value={this.state.name?this.state.name:""}
                         onChange={this.handleChange}/>
                     </div>
-                    <div className="work-card" style={{marginTop:'20%'}}>
-                        <div className="work-container"></div>
-                        <label className="work-property-label">container</label>
+                    <div className="wireframe-card" style={{marginTop:'20%'}}>
+                        <div className="wireframe-container"></div>
+                        <label className="wireframe-property-label">Container</label>
                     </div>
-                    <div className="work-card">
-                        <p style={{cursor:"pointer"}}>prompt for input:</p>
-                        <p className="work-property-label">label</p>
+                    <div className="wireframe-card">
+                        <p style={{cursor:"pointer"}}>Prompt for Input:</p>
+                        <p className="wireframe-property-label">label</p>
                     </div>
-                    <div className="work-card">
-                        <div className="work-button">submit</div>
-                        <label className="work-property-label">button</label>
+                    <div className="wireframe-card">
+                        <div className="wireframe-button">Submit</div>
+                        <label className="wireframe-property-label">Button</label>
                     </div>
-                    <div className="work-card">
-                        <div className="work-textfield">input</div>
-                        <label className="work-property-label">textfield</label>
+                    <div className="wireframe-card">
+                        <div className="wireframe-textfield">Input</div>
+                        <label className="wireframe-property-label">Textfield</label>
                     </div>
                 </div>
 
@@ -150,6 +150,6 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'workLists' },
+        { collection: 'wireframeLists' },
       ]),
 )(LeftTools);
