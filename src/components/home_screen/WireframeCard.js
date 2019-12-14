@@ -39,15 +39,15 @@ class WireframeCard extends React.Component {
     deleteList= (e) => {
         e.stopPropagation();
         e.preventDefault();
-        this.db.doc(this.props.work.id).delete();
+        this.db.doc(this.props.wireframe.id).delete();
     }
 
     render() {
-        const { work } = this.props;
+        const { wireframe } = this.props;
         return (
             <div className="card list z-depth-0 todo-list-link">
                 <div className="card-content grey-text text-darken-3">
-                    <span className="card-title">{work.name===""?"Unknown":work.name}</span>
+                    <span className="card-title">{wireframe.name===""?"Unknown":wireframe.name}</span>
                     <Button floating small 
                     waves="purple"
                     node="button" 
@@ -58,8 +58,8 @@ class WireframeCard extends React.Component {
                     <Modal
                     bottomSheet={false}
                     fixedFooter={false}
-                    header="Delete Work?"
-                    id={"modal-"+work.id}
+                    header="Delete Wireframe?"
+                    id={"modal-"+wireframe.id}
                     open={this.state.modalActive}
                     
                     options={{

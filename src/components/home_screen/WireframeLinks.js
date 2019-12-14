@@ -24,8 +24,8 @@ class WireframeLinks extends Component{
                 <div> Recent Work</div>
                 
                 {wireframeLists && wireframeLists.map(todoList => (
-                    <Link to={'/work/' + todoList.id} key={todoList.id} onClick={this.updateTimeStamp.bind(this,todoList.id)}>
-                        <WireframeCard work={todoList} open={this.handleModalOpen}/>
+                    <Link to={'/wireframe/' + todoList.id} key={todoList.id} onClick={this.updateTimeStamp.bind(this,todoList.id)}>
+                        <WireframeCard wireframe={todoList} open={this.handleModalOpen}/>
                     </Link>
                 ))}
             </div>
