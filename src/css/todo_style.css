@@ -18,9 +18,9 @@ body {
   font-family: 'Lexend Exa';
 }
 
-div.banner {
+div.logo {
   background-image: linear-gradient(to bottom,         
-  #b8b8, #636723);
+  #b8b8, #c724c7);
   color: white;
   font-size: 48pt;
   border-color: black;

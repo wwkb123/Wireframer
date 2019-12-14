@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
-import Banner from '../home_screen/Banner'
+import Logo from '../home_screen/Logo'
 import { loginHandler } from '../../store/database/asynchHandler'
 
 class LoginScreen extends Component {
@@ -62,7 +62,7 @@ class LoginScreen extends Component {
             </div>
           </form>
           <div className="col s8">
-            <Banner />
+            <Logo />
           </div>
           
         </div>

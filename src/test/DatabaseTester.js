@@ -10,17 +10,17 @@ class DatabaseTester extends React.Component {
     // TO LOG IN
     handleClear = () => {
         const fireStore = getFirestore();
-        fireStore.collection('workLists').get().then(function(querySnapshot){
+        fireStore.collection('wireframeLists').get().then(function(querySnapshot){
             querySnapshot.forEach(function(doc) {
-                fireStore.collection('workLists').doc(doc.id).delete();
+                fireStore.collection('wireframeLists').doc(doc.id).delete();
             })
         });
     }
 
     handleReset = () => {
         const fireStore = getFirestore();
-        todoJson.workLists.forEach(todoListJson => {
-            fireStore.collection('workLists').add({
+        todoJson.wireframeLists.forEach(todoListJson => {
+            fireStore.collection('wireframeLists').add({
                     name: todoListJson.name,
                     owner: todoListJson.owner,
                     items: todoListJson.items,

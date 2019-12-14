@@ -7,7 +7,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 
 import WireframeCard from './WireframeCard';
 
-class wireframeLists extends Component{
+class WireframeLists extends Component{
 
     updateTimeStamp = (id) =>{
         let fireStore = getFirestore();

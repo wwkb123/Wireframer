@@ -5,8 +5,8 @@ import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
 
-import Banner from './Banner'
-import WorkLists from './WorkLists'
+import Logo from './Logo'
+import WireframeLists from './WireframeLists';
 class HomeScreen extends Component {
     handleNewList = () => {
         const fireStore = getFirestore();
@@ -31,11 +31,11 @@ class HomeScreen extends Component {
             <div className="dashboard container">
                 <div className="row">
                     <div className="col s12 m4">
-                    <WorkLists/>
+                    <WireframeLists/>
                     </div>
 
                     <div className="col s8">
-                        <Banner />
+                        <Logo />
                         
                         <div className="home_new_list_container row center">
                                 <button className="home_new_list_button " onClick={this.handleNewList}>
