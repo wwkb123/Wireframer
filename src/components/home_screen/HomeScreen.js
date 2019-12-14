@@ -9,17 +9,7 @@ import Logo from './Logo'
 import WireframeLists from './WireframeLists';
 class HomeScreen extends Component {
     handleNewList = () => {
-        const fireStore = getFirestore();
-        fireStore.collection('todoLists').add({
-            items : [],
-            name : "",
-            owner : "",
-            timestamp: fireStore.FieldValue.serverTimestamp()
-        })
-        .then(ref => {
-            this.props.history.push('/work/new');
-        })
-        
+        this.props.history.push('/work/new');
     }
 
     render() {

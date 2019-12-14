@@ -16,7 +16,7 @@ class WireframeCard extends React.Component {
     }
 
 
-    dbref= getFirestore().collection("wireframeLists");
+    db= getFirestore().collection("wireframeLists");
 
     
     handleModalOpen = (e) => {
@@ -39,7 +39,7 @@ class WireframeCard extends React.Component {
     deleteList= (e) => {
         e.stopPropagation();
         e.preventDefault();
-        this.dbref.doc(this.props.work.id).delete();
+        this.db.doc(this.props.work.id).delete();
     }
 
     render() {
@@ -77,12 +77,12 @@ class WireframeCard extends React.Component {
                     }}
                     >
                         <section className="dialog_content">
-                            <p><strong>Are you sure you want to delete this work?</strong></p>
+                            <p><strong>Are you sure to delete it?</strong></p>
                         </section>
                             <Button waves="orange" id="dialog_yes_button" className='btn' onClick={this.deleteList}>Yes</Button>
                             <Button waves="orange" id="dialog_no_button" className='btn' onClick={this.handleModalClose}>No</Button>
                         <footer className="dialog_footer">
-                            The list will not be retreivable.
+                            Once the list is deleted, it will be unretreivable.
                         </footer>
                     </Modal>
                 </div>

@@ -7,7 +7,6 @@ import { logoutHandler } from '../../store/database/asynchHandler'
 
 class LoggedInLinks extends React.Component {
 
-  // As in SignIn.jsx we need to use a function that gets as an argument firebase object
   handleLogout = () => {
     const { firebase } = this.props;
     this.props.signOut(firebase);
