@@ -8,8 +8,8 @@ import { getFirestore } from 'redux-firestore';
 import Logo from './Logo'
 import WireframeLinks from './WireframeLinks';
 class HomeScreen extends Component {
-    handleNewList = () => {
-        this.props.history.push('/work/new');
+    handleNewWireframe = () => {
+        this.props.history.push('/wireframe/new');
     }
 
     render() {
@@ -28,7 +28,7 @@ class HomeScreen extends Component {
                         <Logo />
                         
                         <div className="home_new_list_container row center">
-                                <button className="home_new_list_button " onClick={this.handleNewList}>
+                                <button className="home_new_list_button " onClick={this.handleNewWireframe}>
                                     Create a New Wireframe
                                 </button>
                         </div>

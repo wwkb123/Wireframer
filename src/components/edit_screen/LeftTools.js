@@ -6,7 +6,7 @@ import { compose } from 'redux';
 
 
 
-class ToolMapLeft extends Component{
+class LeftTools extends Component{
 
     state = {
         name: null,
@@ -154,4 +154,4 @@ export default compose(
     firestoreConnect([
         { collection: 'workLists' },
       ]),
-)(ToolMapLeft);
+)(LeftTools);

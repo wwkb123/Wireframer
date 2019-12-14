@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {TextInput, Range} from 'react-materialize';
 import ColorPicker from './ColorPicker'
 
-class ToolMapRight extends Component{
+class RightTools extends Component{
 
     render(){
         
@@ -40,4 +40,4 @@ class ToolMapRight extends Component{
     }
 }
 
-export default ToolMapRight;
+export default RightTools;

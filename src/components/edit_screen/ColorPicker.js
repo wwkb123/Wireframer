@@ -3,7 +3,7 @@ import {SketchPicker} from 'react-color';
 import React, { Component } from 'react';
 
 
-class Banner extends Component{
+class ColorPicker extends Component{
 
     state = {
         displayColorPicker: false,
@@ -76,4 +76,4 @@ class Banner extends Component{
     }
 }
 
-export default Banner;
+export default ColorPicker;

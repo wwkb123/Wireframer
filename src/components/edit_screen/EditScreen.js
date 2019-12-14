@@ -7,8 +7,8 @@ import { getFirestore } from 'redux-firestore';
 
 
 
-import ToolMapLeft from './ToolMapLeft';
-import ToolMapRight from './ToolMapRight';
+import LeftTools from './LeftTools';
+import RightTools from './RightTools';
 import DisplayPlace from './DisplayPlace';
 
 class EditScreen extends Component{
@@ -32,13 +32,13 @@ class EditScreen extends Component{
     // eslint-disable-next-line
     state.timestamp=fireStore.FieldValue.serverTimestamp();
     if(this.props.match.params.id==='new')
-      fireStore.collection('workLists').add({
+      fireStore.collection('wireframeLists').add({
         name:state.name,
         owner:state.owner,
         timestamp:state.timestamp
       })
     else
-      fireStore.collection('workLists').doc(this.props.match.params.id).update({
+      fireStore.collection('wireframeLists').doc(this.props.match.params.id).update({
         name:state.name,
         owner:state.owner,
         timestamp:state.timestamp
@@ -58,17 +58,17 @@ class EditScreen extends Component{
 
     return (
         <div className='row'>
-          <ToolMapLeft work={work} handleSaveWork={this.handleSaveWork}/>
+          <LeftTools work={work} handleSaveWork={this.handleSaveWork}/>
           <DisplayPlace/>
-          <ToolMapRight/>
+          <RightTools/>
         </div>
     );
   }
 }
 const mapStateToProps = (state, ownProps) => {
     const { id } = ownProps.match.params;
-    const { workLists } = state.firestore.data;
-    const work = workLists ? workLists[id] : null;
+    const { wireframeLists } = state.firestore.data;
+    const work = wireframeLists ? wireframeLists[id] : null;
     if(work)
       work.id=id
   
@@ -81,6 +81,6 @@ const mapStateToProps = (state, ownProps) => {
   export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-      { collection: 'workLists' },
+      { collection: 'wireframeLists' },
     ]),
   )(EditScreen);

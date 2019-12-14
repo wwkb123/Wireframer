@@ -16,7 +16,7 @@ class WireframeCard extends React.Component {
     }
 
 
-    db= getFirestore().collection("wireframeLists");
+    db = getFirestore().collection("wireframeLists");
 
     
     handleModalOpen = (e) => {
