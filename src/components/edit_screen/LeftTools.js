@@ -71,14 +71,12 @@ class LeftTools extends Component{
                     waves="purple"
                     node="button" 
                     className="col s3 work-top-button" 
-                    icon={<Icon>save</Icon>} 
-                    onClick={this.handleModalOpen}>  
+                    onClick={this.handleModalOpen}>Save
                 </Button>
                 <Button small 
                     waves="teal"
                     node="button" 
-                    className="col s3 work-top-button" 
-                    icon={<Icon>cancel</Icon>}>  
+                    className="col s3 work-top-button">Close
                 </Button>
                 <Modal
                 bottomSheet={false}
