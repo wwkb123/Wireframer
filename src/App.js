@@ -9,7 +9,7 @@ import RegisterScreen from './components/register_screen/RegisterScreen.js';
 import LoginScreen from './components/login_screen/LoginScreen.js';
 import HomeScreen from './components/home_screen/HomeScreen.js';
 import DatabaseTester from './test/DatabaseTester.js';
-import WorkScreen from './components/work_screen/WorkScreen.js';
+import WorkScreen from './components/edit_screen/EditScreen.js/index.js';
 
 
 class App extends Component {
@@ -28,7 +28,7 @@ class App extends Component {
               <Route path="/databaseTester" component={DatabaseTester} />
               <Route path="/register" component={RegisterScreen} />
               <Route path="/login" component={LoginScreen} />
-              <Route path="/work/:id" component={WorkScreen} />
+              <Route path="/edit/:id" component={EditScreen} />
               <Route path="/:any" component={HomeScreen} />
             </Switch>
             

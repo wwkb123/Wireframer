@@ -11,7 +11,7 @@ import ToolMapLeft from './ToolMapLeft';
 import ToolMapRight from './ToolMapRight';
 import DisplayPlace from './DisplayPlace';
 
-class WorkScreen extends Component{
+class EditScreen extends Component{
 
   state={
     "id": null,
@@ -83,4 +83,4 @@ const mapStateToProps = (state, ownProps) => {
     firestoreConnect([
       { collection: 'workLists' },
     ]),
-  )(WorkScreen);
+  )(EditScreen);
