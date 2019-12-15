@@ -17,9 +17,32 @@ class EditArea extends Component{
     }
 
     onKeyPressed = (event) => {
+        event.preventDefault();
         if ((event.ctrlKey || event.metaKey) && event.key === 'd') {
             this.duplicateItem();
+        }else if (event.key == "Delete" || event.keyCode == 8){
+            this.deleteItem();
         }
+        
+    }
+
+    deleteItem = () => {
+        var item = this.state.selectedItem;
+        console.log("Delete ", item);
+        if(item){
+            var items = this.props.wireframe.controlList;
+            for(let i = 0; i < items.length; i++){
+                if(items[i] == item){
+                    console.log("Found ", item);
+                    items.splice(i, 1);
+                    break;
+                }
+            }
+            this.setState({items});
+            this.props.updateList(items);
+            this.props.setHasChanged(true);
+            this.props.setHasSaved(false);
+        } 
     }
 
     duplicateItem = () =>{
@@ -48,7 +71,7 @@ class EditArea extends Component{
             items.push(ctr);
 
             this.setState({items});
-            this.props.updateList(this.state.items);
+            this.props.updateList(items);
             this.props.setHasChanged(true);
             this.props.setHasSaved(false);
         }
@@ -65,6 +88,9 @@ class EditArea extends Component{
                 items[i].selected = false;
             }
         }
+        for (let i = 0; i < items.length; i++) {
+            items[i].key = i;
+        }
         this.setState({items});
         this.props.updateList(this.state.items);
         this.props.updateSelectedItem(this.state.selectedItem);
@@ -80,7 +106,7 @@ class EditArea extends Component{
         this.setState({selectedItem: null});
         this.setState({items});
         this.props.updateList(this.state.items);
-        this.props.updateSelectedItem(this.state.selectedItem);
+        // this.props.updateSelectedItem(this.state.selectedItem);
         this.props.setHasChanged(true);
         this.props.setHasSaved(false);
     }
