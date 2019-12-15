@@ -13,7 +13,7 @@ class LeftTools extends Component{
         owner: null,
         timestamp: null,
         modalActive : false,
-        hasSave: false,
+        hasSaved: false,
         hasChanged: false
     }
 
@@ -42,7 +42,7 @@ class LeftTools extends Component{
     }
 
     handleCheckSaved = () => {
-        if(!this.state.hasSave && this.state.hasChanged){
+        if(!this.state.hasSaved && this.state.hasChanged){
             this.setState({modalActive:true});
         }
         if(!this.state.hasChanged){
@@ -63,17 +63,7 @@ class LeftTools extends Component{
     
     handleControlClick = (type) => {
         console.log(type);
-        switch(type){
-            case "container":
-                break;
-            case "label":
-                break;
-            case "textButton":
-                break;
-            case "textField":
-                break;
-            default:
-        }
+        this.props.handleControlClick(type);
     }
 
     handleInitState = () =>{

@@ -14,16 +14,19 @@ import EditArea from './EditArea';
 class EditScreen extends Component{
 
   state={
-    "id": null,
-    "owner": null,
-    "name": null,
-    "screenHeight": null,
-    "screenWeidth": null,
-    "centerX":null,
-    "centerY":null,
-    "H_scrollbar_length": null,
-    "V_scrollbar_length":null,
-    "items":[]
+    "currWireframe":{
+      "id": null,
+      "owner": null,
+      "name": null,
+      "screenHeight": null,
+      "screenWeidth": null,
+      "centerX":null,
+      "centerY":null,
+      "H_scrollbar_length": null,
+      "V_scrollbar_length":null,
+      "items":[]
+    }
+   
   }
 
 
@@ -45,6 +48,26 @@ class EditScreen extends Component{
       })
   }
 
+  handleControlClick = (type) => {
+      switch(type){
+        case "container":
+          this.state.currWireframe.items.push("container");
+            break;
+        case "label":
+          this.state.currWireframe.items.push("label");
+            break;
+        case "textButton":
+          this.state.currWireframe.items.push("textButton");
+            break;
+        case "textField":
+          this.state.currWireframe.items.push("textField");
+            break;
+        default:
+    }
+    this.setState(this.state.currWireframe.items);
+    // console.log("items in EditScreen", this.state.currWireframe.items);
+  }
+
   render(){
 
     if (!this.props.auth.uid) {
@@ -53,13 +76,13 @@ class EditScreen extends Component{
 
     let wireframe = this.props.wireframe;
     if(this.props.wireframe == null){
-        wireframe = this.state;
+        wireframe = this.state.currWireframe;
     }
 
     return (
         <div className='row'>
-          <LeftTools history={this.props.history} wireframe={wireframe} handleSaveWireframe={this.handleSaveWireframe}/>
-          <EditArea/>
+          <LeftTools history={this.props.history} wireframe={wireframe} handleSaveWireframe={this.handleSaveWireframe} handleControlClick={this.handleControlClick}/>
+          <EditArea state={this.state} />
           <RightTools/>
         </div>
     );
@@ -70,7 +93,7 @@ const mapStateToProps = (state, ownProps) => {
     const { wireframeLists } = state.firestore.data;
     const wireframe = wireframeLists ? wireframeLists[id] : null;
     if(wireframe)
-      wireframe.id=id
+      wireframe.id = id
   
     return {
       wireframe: wireframe,
