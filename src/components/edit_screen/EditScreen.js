@@ -60,7 +60,8 @@ class EditScreen extends Component{
         "left" : item.left,
         "text" : item.text,
         "fontSize" : item.fontSize,
-        "background" : item.background,
+        "textColor" : item.textColor,
+        "backgroundColor" : item.backgroundColor,
         "borderColor" : item.borderColor,
         "borderThickness" : item.borderThickness,
         "borderRadius" : item.borderRadius
@@ -111,12 +112,14 @@ class EditScreen extends Component{
           attrs.text = "Submit"
           attrs.width = 70
           attrs.height = 25
+          attrs.backgroundColor = "gray"
             break;
         case "textField":
           attrs.type = "textField"
           attrs.text = "Input"
           attrs.width = 200
           attrs.height = 25
+          attrs.textColor = "lightgray"
             break;
         default:
     }

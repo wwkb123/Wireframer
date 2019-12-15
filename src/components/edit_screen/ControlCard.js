@@ -26,8 +26,9 @@ class ControlCard extends Component{
         
         var index = this.props.control.id.toString();
         // console.log(index)
-        const { width, height, top, left, fontSize } = this.props.control;
-        const dummy = { width, height, top, left, position:'absolute', fontSize: fontSize+"px"}
+        const { width, height, top, left, fontSize, backgroundColor, textColor } = this.props.control;
+        const dummy = { width, height, top, left, 
+          position:'absolute', fontSize: fontSize+"px", backgroundColor, color: textColor }
         return (
           <div style={{position:'relative', zIndex:{index}}} onClick={this.props.handleSelect.bind(this, this.props.control)} onMouseDown={this.props.handleSelect.bind(this, this.props.control)}>
             <div style={dummy}>{ this.props.control?this.props.control.text:""}</div>

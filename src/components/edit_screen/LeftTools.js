@@ -164,11 +164,11 @@ class LeftTools extends Component{
                         <p className="wireframe-property-label">Label</p>
                     </div>
                     <div className="wireframe-card" style={{display: 'block', cursor: 'pointer'}} onClick={this.handleControlClick.bind(this, "textButton")}>
-                        <div className="wireframe-button">Submit</div>
+                        <div className="wireframe-button" style={{backgroundColor:'gray'}}>Submit</div>
                         <label className="wireframe-property-label">Button</label>
                     </div>
                     <div className="wireframe-card" style={{display: 'block', cursor: 'pointer'}} onClick={this.handleControlClick.bind(this, "textField")}>
-                        <div className="wireframe-textfield">Input</div>
+                        <div className="wireframe-textfield" style={{color:'lightgray'}}>Input</div>
                         <label className="wireframe-property-label">Textfield</label>
                     </div>
                 </div>
