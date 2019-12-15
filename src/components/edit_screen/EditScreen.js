@@ -27,13 +27,18 @@ class EditScreen extends Component{
         V_scrollbar_length:null,
         controlList:this.props.wireframe?this.props.wireframe.controlList:[],
         hasSaved: false,
-        hasChanged: false
+        hasChanged: false,
+        selectedItem: null
     }
 
   }
 
   updateList = (list) => {
     this.setState({controlList:list});
+  }
+
+  updateSelectedItem = (item) =>{
+    this.setState({selectedItem:item});
   }
 
   setHasChanged = (value) => {
@@ -128,7 +133,7 @@ class EditScreen extends Component{
     var list = this.state.controlList
     list.push(ctr);
     this.setState({controlList:list});
-    console.log("items in EditScreen", this.state.controlList);
+    // console.log("items in EditScreen", this.state.controlList);
   }
 
   render(){
@@ -137,13 +142,14 @@ class EditScreen extends Component{
         return <Redirect to="/login" />;
     }
 
-    console.log("Edit s", this.state)
+    // console.log("Edit s", this.state)
     return (
         <div className='row'>
           <LeftTools history={this.props.history} wireframe={this.state} handleSaveWireframe={this.handleSaveWireframe} handleControlClick={this.handleControlClick}
           setHasChanged={this.setHasChanged.bind(this)} setHasSaved={this.setHasSaved.bind(this)} updateList={this.updateList.bind(this)}/>
-          <EditArea wireframe={this.state} updateList={this.updateList.bind(this)} setHasChanged={this.setHasChanged.bind(this)} setHasSaved={this.setHasSaved.bind(this)}/>
-          <RightTools/>
+          <EditArea wireframe={this.state} updateList={this.updateList.bind(this)} setHasChanged={this.setHasChanged.bind(this)} setHasSaved={this.setHasSaved.bind(this)}
+          updateSelectedItem={this.updateSelectedItem.bind(this)} />
+          <RightTools wireframe={this.state} setHasChanged={this.setHasChanged.bind(this)} setHasSaved={this.setHasSaved.bind(this)} updateList={this.updateList.bind(this)}/>
         </div>
     );
   }

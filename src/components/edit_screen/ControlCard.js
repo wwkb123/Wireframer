@@ -26,9 +26,10 @@ class ControlCard extends Component{
         
         var index = this.props.control.id.toString();
         // console.log(index)
-        const { width, height, top, left, fontSize, backgroundColor, textColor } = this.props.control;
+        const { width, height, top, left, fontSize, backgroundColor, textColor, borderColor, borderThickness, borderRadius } = this.props.control;
         const dummy = { width, height, top, left, 
-          position:'absolute', fontSize: fontSize+"px", backgroundColor, color: textColor }
+          position:'absolute', fontSize: fontSize+"px", backgroundColor, color: textColor, borderStyle: 'solid', borderColor,
+          borderWidth: borderThickness, borderRadius }
         return (
           <div style={{position:'relative', zIndex:{index}}} onClick={this.props.handleSelect.bind(this, this.props.control)} onMouseDown={this.props.handleSelect.bind(this, this.props.control)}>
             <div style={dummy}>{ this.props.control?this.props.control.text:""}</div>
@@ -50,18 +51,6 @@ class ControlCard extends Component{
               onDrag={this.handleDrag}
               // onDragEnd={this.handleDragEnd}
             />
-            <div style={{
-                left: this.props.control.left,
-                top: this.props.control.top,
-                borderColor: this.props.control.borderColor,
-                // borderWidth: this.props.control.borderThic,
-                // borderStyle: "solid",
-                // value: this.props.control.property,
-                // backgroundColor: this.props.control.backgroundColor,
-                // fontSize: this.props.control.fontSize,
-                width: "100%",
-                height: "100%",
-            }}></div>
           </div>
         )
       }

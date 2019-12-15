@@ -21,6 +21,7 @@ class EditArea extends Component{
         }
         this.setState({items});
         this.props.updateList(this.state.items);
+        this.props.updateSelectedItem(this.state.selectedItem);
         this.props.setHasChanged(true);
         this.props.setHasSaved(false);
     }
@@ -33,13 +34,14 @@ class EditArea extends Component{
         this.setState({selectedItem: null});
         this.setState({items});
         this.props.updateList(this.state.items);
+        // this.props.updateSelectedItem(this.state.selectedItem);
         this.props.setHasChanged(true);
         this.props.setHasSaved(false);
     }
 
     render(){
         var items = this.props.wireframe.controlList;
-        console.log("items", items);
+        // console.log("items", items);
         return (
             <div className="col s6 display-place total-tool">
                 <Scrollbars autoHide={false} autoHideTimeout={500} autoHideDuration={200}>

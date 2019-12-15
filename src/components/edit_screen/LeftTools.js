@@ -86,7 +86,7 @@ class LeftTools extends Component{
     render(){
         const { wireframe } = this.props;
         this.handleInitState();
-        console.log("left", this.props.wireframe.controlList);
+        // console.log("left", this.props.wireframe.controlList);
         return (
             <div className="col s3 total-tool" >
                 <div className= "tool row" style={{height:"6.5%"}}>
