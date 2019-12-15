@@ -7,17 +7,17 @@ class Control extends Component{
         super(attrs);
         this.id = attrs.id;
         this.type = attrs.type;
-        this.centerX = attrs.centerX;
-        this.centerY = attrs.centerY;
         this.width = attrs.width;
         this.height = attrs.height;
-        this.properties = attrs.properties;
-        this.id = attrs.id
-        this.selected = false
+        this.selected = false;
         this.top = 50;
         this.left = 50;
+        this.text = attrs.text?attrs.text:"";
+        this.fontSize = 14;
+        this.background = "#FFFFFF";
         this.borderColor = 'black';
-        this.text = attrs.text;
+        this.borderThickness = 1;
+        this.borderRadius = 0;
     }
 
 }

@@ -4,13 +4,13 @@ import ControlCard from './ControlCard';
 
 class EditArea extends Component{
     state = {
-        items : this.props.state.currWireframe.items,
-        selectedItem : null
+        items : this.props.wireframe.controlList,
+        selectedItem : null,
     }
 
     handleSelect = (item, e) => {
         e.stopPropagation();
-        var items = this.state.items;
+        var items = this.props.wireframe.controlList;
         for (let i = 0; i < items.length; i++) {
             if(item == items[i]){
                 items[i].selected = true;
@@ -19,20 +19,26 @@ class EditArea extends Component{
                 items[i].selected = false;
             }
         }
-        this.setState({items})
+        this.setState({items});
+        this.props.updateList(this.state.items);
+        this.props.setHasChanged(true);
+        this.props.setHasSaved(false);
     }
 
     handleUnselect = () => {
-        var items = this.state.items;
+        var items = this.props.wireframe.controlList;
         for (let i = 0; i < items.length; i++) {
             items[i].selected = false;
         }
         this.setState({selectedItem: null});
-        this.setState({items})
+        this.setState({items});
+        this.props.updateList(this.state.items);
+        this.props.setHasChanged(true);
+        this.props.setHasSaved(false);
     }
 
     render(){
-        var items = this.state.items;
+        var items = this.props.wireframe.controlList;
         console.log("items", items);
         return (
             <div className="col s6 display-place total-tool">

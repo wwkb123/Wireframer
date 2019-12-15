@@ -10,7 +10,7 @@
 			"centerY":333,
 			"H_scrollbar_length": 11,
 			"V_scrollbar_length":22,
-			"items":[
+			"controlList":[
 				{
 					"id":"32",
 					"x": "33.333",
@@ -63,7 +63,7 @@
 			"centerY":33,
 			"H_scrollbar_length": 11,
 			"V_scrollbar_length":22,
-			"items":[
+			"controlList":[
 				{
 					"id":"32",
 					"x": 33.333,

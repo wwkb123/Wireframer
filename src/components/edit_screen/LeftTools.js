@@ -13,7 +13,6 @@ class LeftTools extends Component{
         owner: null,
         timestamp: null,
         modalActive : false,
-        currWireframe : this.props.wireframe
     }
 
     handleModalOpen = (e) => {
@@ -27,8 +26,8 @@ class LeftTools extends Component{
     }
 
     handleChange = (e) => {
-        this.setState({currWireframe:{hasChanged: true}});
-        this.setState({currWireframe:{hasSaved: false}});
+        this.props.setHasChanged(true);
+        this.props.setHasSaved(false);
         e.persist();
         const target = e.target;
         this.setState(state => ({
@@ -39,15 +38,20 @@ class LeftTools extends Component{
 
     handleSaveWireframe = () => {
         this.props.handleSaveWireframe(this.state);
-        this.setState({currWireframe:{hasChanged: false}});
-        this.setState({currWireframe:{hasSaved: true}});
+        var items = this.props.wireframe.controlList;
+        for (let i = 0; i < items.length; i++) {
+            items[i].selected = false;
+        }
+        this.props.updateList(items);
+        this.props.setHasChanged(false);
+        this.props.setHasSaved(true);
     }
 
     handleCheckSaved = () => {
-        if(!this.state.currWireframe.hasSaved && this.state.currWireframe.hasChanged){
+        if(!this.props.wireframe.hasSaved && this.props.wireframe.hasChanged){
             this.setState({modalActive:true});
         }
-        if(!this.state.currWireframe.hasChanged){
+        else if(!this.props.wireframe.hasChanged){
             this.handleCloseWireframe();
         }
     }
@@ -65,7 +69,8 @@ class LeftTools extends Component{
     
     handleControlClick = (type) => {
         console.log(type);
-        this.setState({currWireframe:{hasChanged: true}});
+        this.props.setHasChanged(true);
+        this.props.setHasSaved(false);
         this.props.handleControlClick(type);
     }
 
@@ -81,6 +86,7 @@ class LeftTools extends Component{
     render(){
         const { wireframe } = this.props;
         this.handleInitState();
+        console.log("left", this.props.wireframe.controlList);
         return (
             <div className="col s3 total-tool" >
                 <div className= "tool row" style={{height:"6.5%"}}>

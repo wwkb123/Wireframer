@@ -12,57 +12,93 @@ import RightTools from './RightTools';
 import EditArea from './EditArea';
 
 class EditScreen extends Component{
-
-  state={
-    "currWireframe":{
-      "id": null,
-      "owner": null,
-      "name": null,
-      "screenHeight": null,
-      "screenWeidth": null,
-      "centerX":null,
-      "centerY":null,
-      "H_scrollbar_length": null,
-      "V_scrollbar_length":null,
-      "items":[],
-      "hasSaved": false,
-      "hasChanged": false
+  constructor(props){
+    super(props);
+    this.handleSaveWireframe = this.handleSaveWireframe.bind(this);
+    this.state = {
+        id: null,
+        owner: this.props.wireframe?this.props.wireframe.owner:"",
+        name: this.props.wireframe?this.props.wireframe.name:"",
+        screenHeight: null,
+        screenWeidth: null,
+        centerX:null,
+        centerY:null,
+        H_scrollbar_length: null,
+        V_scrollbar_length:null,
+        controlList:this.props.wireframe?this.props.wireframe.controlList:[],
+        hasSaved: false,
+        hasChanged: false
     }
-   
+
   }
 
+  updateList = (list) => {
+    this.setState({controlList:list});
+  }
+
+  setHasChanged = (value) => {
+    this.setState({hasChanged:value});
+  }
+
+  setHasSaved = (value) => {
+    this.setState({hasSaved:value});
+  }
 
   handleSaveWireframe = (state) => {
     let fireStore = getFirestore();
     // eslint-disable-next-line
+    var controlList = []
+    for(let i = 0; i < this.state.controlList.length; i++){
+      let item = this.state.controlList[i];
+      var itemToPush = {
+        "id" : item.id,
+        "type" : item.type,
+        "width" : item.width,
+        "height" : item.height,
+        "selected" : false,
+        "top" : item.top,
+        "left" : item.left,
+        "text" : item.text,
+        "fontSize" : item.fontSize,
+        "background" : item.background,
+        "borderColor" : item.borderColor,
+        "borderThickness" : item.borderThickness,
+        "borderRadius" : item.borderRadius
+      }
+      controlList.push(itemToPush);
+    }
+    console.log("To be upload: ", controlList);
     state.timestamp = fireStore.FieldValue.serverTimestamp();
     if(this.props.match.params.id==='new')
       fireStore.collection('wireframeLists').add({
         name:state.name,
         owner:state.owner,
-        timestamp:state.timestamp
+        timestamp:state.timestamp,
+        controlList: controlList
       })
     else
       fireStore.collection('wireframeLists').doc(this.props.match.params.id).update({
         name:state.name,
         owner:state.owner,
-        timestamp:state.timestamp
+        timestamp:state.timestamp,
+        controlList: controlList
       })
   }
 
   handleControlClick = (type) => {
     const attrs = {
       "type" : "",
-      "centerX" : 0.0,
-      "centerY" : 0.0,
+      "top" : 0.0,
+      "left" : 0.0,
       "width" : 100.0,
       "height" : 50.0,
-      "properties" : [],
-      "id" : this.state.currWireframe.items.length
+      "id" : this.state.controlList.length
     }
       switch(type){
         case "container":
           attrs.type = "container"
+          attrs.width = 400
+          attrs.height = 400
             break;
         case "label":
           attrs.type = "label"
@@ -86,9 +122,10 @@ class EditScreen extends Component{
     }
 
     const ctr = new Control(attrs);
-    this.state.currWireframe.items.push(ctr);
-    this.setState(this.state.currWireframe.items);
-    // console.log("items in EditScreen", this.state.currWireframe.items);
+    var list = this.state.controlList
+    list.push(ctr);
+    this.setState({controlList:list});
+    console.log("items in EditScreen", this.state.controlList);
   }
 
   render(){
@@ -97,15 +134,12 @@ class EditScreen extends Component{
         return <Redirect to="/login" />;
     }
 
-    let wireframe = this.props.wireframe;
-    if(this.props.wireframe == null){
-        wireframe = this.state.currWireframe;
-    }
-
+    console.log("Edit s", this.state)
     return (
         <div className='row'>
-          <LeftTools history={this.props.history} wireframe={wireframe} handleSaveWireframe={this.handleSaveWireframe} handleControlClick={this.handleControlClick}/>
-          <EditArea state={this.state} />
+          <LeftTools history={this.props.history} wireframe={this.state} handleSaveWireframe={this.handleSaveWireframe} handleControlClick={this.handleControlClick}
+          setHasChanged={this.setHasChanged.bind(this)} setHasSaved={this.setHasSaved.bind(this)} updateList={this.updateList.bind(this)}/>
+          <EditArea wireframe={this.state} updateList={this.updateList.bind(this)} setHasChanged={this.setHasChanged.bind(this)} setHasSaved={this.setHasSaved.bind(this)}/>
           <RightTools/>
         </div>
     );
