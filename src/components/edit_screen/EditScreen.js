@@ -19,8 +19,8 @@ class EditScreen extends Component{
         id: null,
         owner: this.props.wireframe?this.props.wireframe.owner:"",
         name: this.props.wireframe?this.props.wireframe.name:"",
-        screenHeight: this.props.wireframe?this.props.wireframe.screenHeight:500,
-        screenWidth: this.props.wireframe?this.props.wireframe.screenWidth:500,
+        screenHeight: this.props.wireframe?(this.props.wireframe.screenHeight?this.props.wireframe.screenHeight:500):500,
+        screenWidth: this.props.wireframe?(this.props.wireframe.screenWidth?this.props.wireframe.screenWidth:500):500,
         centerX:null,
         centerY:null,
         H_scrollbar_length: null,
@@ -81,11 +81,10 @@ class EditScreen extends Component{
       }
       controlList.push(itemToPush);
     }
-    console.log("To be upload: ", controlList);
+    console.log("To be upload: ", controlList, this.state.screenHeight, this.state.screenWidth);
     state.timestamp = fireStore.FieldValue.serverTimestamp();
     if(this.props.match.params.id==='new')
       fireStore.collection('wireframeLists').add({
-        id: state.owner,
         name:state.name,
         owner:state.owner,
         timestamp:state.timestamp,
@@ -95,7 +94,6 @@ class EditScreen extends Component{
       })
     else
       fireStore.collection('wireframeLists').doc(this.props.match.params.id).update({
-        id: state.owner,
         name:state.name,
         owner:state.owner,
         timestamp:state.timestamp,
