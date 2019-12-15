@@ -61,6 +61,20 @@ class LeftTools extends Component{
         this.handleModalClose();
     }
     
+    handleControlClick = (type) => {
+        console.log(type);
+        switch(type){
+            case "container":
+                break;
+            case "label":
+                break;
+            case "textButton":
+                break;
+            case "textField":
+                break;
+            default:
+        }
+    }
 
     handleInitState = () =>{
         if(this.state.name===null && this.props.wireframe.name)
@@ -142,19 +156,19 @@ class LeftTools extends Component{
                         <TextInput placeholder="Insert here" className="wireframe-input" id='name' value={this.state.name?this.state.name:""}
                         onChange={this.handleChange}/>
                     </div>
-                    <div className="wireframe-card" style={{marginTop:'20%'}}>
+                    <div className="wireframe-card" style={{marginTop:'20%', display: 'block', cursor: 'pointer'}} onClick={this.handleControlClick.bind(this, "container")}>
                         <div className="wireframe-container"></div>
                         <label className="wireframe-property-label">Container</label>
                     </div>
-                    <div className="wireframe-card">
+                    <div className="wireframe-card" style={{display: 'block', cursor: 'pointer'}} onClick={this.handleControlClick.bind(this, "label")}>
                         <p style={{cursor:"pointer"}}>Prompt for Input:</p>
-                        <p className="wireframe-property-label">label</p>
+                        <p className="wireframe-property-label">Label</p>
                     </div>
-                    <div className="wireframe-card">
+                    <div className="wireframe-card" style={{display: 'block', cursor: 'pointer'}} onClick={this.handleControlClick.bind(this, "textButton")}>
                         <div className="wireframe-button">Submit</div>
                         <label className="wireframe-property-label">Button</label>
                     </div>
-                    <div className="wireframe-card">
+                    <div className="wireframe-card" style={{display: 'block', cursor: 'pointer'}} onClick={this.handleControlClick.bind(this, "textField")}>
                         <div className="wireframe-textfield">Input</div>
                         <label className="wireframe-property-label">Textfield</label>
                     </div>

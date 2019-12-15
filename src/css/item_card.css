@@ -124,6 +124,7 @@ cursor: pointer;
   font-weight: bold;
   color: black;
   text-align: center;
+  cursor: pointer;
 }
 
 .wireframe-properties {
