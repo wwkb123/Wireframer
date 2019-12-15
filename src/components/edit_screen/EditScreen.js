@@ -9,7 +9,7 @@ import { getFirestore } from 'redux-firestore';
 
 import LeftTools from './LeftTools';
 import RightTools from './RightTools';
-import DisplayPlace from './DisplayPlace';
+import EditArea from './EditArea';
 
 class EditScreen extends Component{
 
@@ -59,7 +59,7 @@ class EditScreen extends Component{
     return (
         <div className='row'>
           <LeftTools history={this.props.history} wireframe={wireframe} handleSaveWireframe={this.handleSaveWireframe}/>
-          <DisplayPlace/>
+          <EditArea/>
           <RightTools/>
         </div>
     );
