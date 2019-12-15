@@ -8,6 +8,7 @@ class ControlCard extends Component{
         height: 100,
         top: 100,
         left: 100,
+        selected : this.props.selected
     }
 
     handleResize = (style, isShiftKey, type) => {
@@ -26,11 +27,14 @@ class ControlCard extends Component{
         })
       }
     
-      handleDrag = (deltaX, deltaY) => {
-        this.setState({
-          left: this.state.left + deltaX,
-          top: this.state.top + deltaY
-        })
+      handleDrag = (deltaX, deltaY, selected) => {
+        if(selected){
+            this.setState({
+                left: this.state.left + deltaX,
+                top: this.state.top + deltaY
+            })
+        }
+        
       }
     
       render() {
@@ -38,7 +42,7 @@ class ControlCard extends Component{
         var index = this.props.control.id.toString();
         // console.log(index)
         return (
-          <div style={{position:'relative', zIndex:{index}}}>
+          <div style={{position:'relative', zIndex:{index}}} onClick={this.props.handleSelect.bind(this, this.props.control)}>
             <ResizableRect
               left={left}
               top={top}
@@ -48,13 +52,13 @@ class ControlCard extends Component{
               // aspectRatio={false}
               // minWidth={10}
               // minHeight={10}
-              zoomable='n, w, s, e, nw, ne, se, sw'
+              zoomable={this.props.control.selected?'n, w, s, e, nw, ne, se, sw':''}
 
               // onResizeStart={this.handleResizeStart}
               onResize={this.handleResize}
               // onResizeEnd={this.handleUp}
               // onDragStart={this.handleDragStart}
-              onDrag={this.handleDrag}
+              onDrag={this.handleDrag.bind(this, this.props.control.selected)}
               // onDragEnd={this.handleDragEnd}
             />
           </div>

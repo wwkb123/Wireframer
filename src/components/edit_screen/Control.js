@@ -13,6 +13,7 @@ class Control extends Component{
         this.height = attrs.height;
         this.properties = attrs.properties;
         this.id = attrs.id
+        this.selected = false
     }
 
 }
