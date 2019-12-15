@@ -149,3 +149,7 @@ cursor: pointer;
 .gblcbk {
   border: 0px solid #000000 !important;
 }
+
+.invisible {
+  display: none !important;
+}

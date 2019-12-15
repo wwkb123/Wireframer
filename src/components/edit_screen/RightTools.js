@@ -43,10 +43,14 @@ class RightTools extends Component{
     
     render(){
         const selected = this.props.wireframe.selectedItem;
+        var className = "col s3 total-tool invisible";
         if(this.props.wireframe)
+            if(selected)
+                className = "col s3 total-tool"
             console.log("Select item is ", this.props.wireframe.selectedItem);
+            
         return (
-            <div className="col s3 total-tool">
+            <div className={className}>
                 <div className="tool row" style={{height:"100%"}}>
                     <div className="wireframe-properties">
                         <div className="wireframe-property-label" >Properties</div>
@@ -58,15 +62,15 @@ class RightTools extends Component{
                     </div>
                     <div className="wireframe-properties" >
                         <label className="wireframe-property-label" >Text Color: </label>
-                        <ColorPicker color={selected?selected.textColor:"black"}/>
+                        <ColorPicker setHasChanged={this.props.setHasChanged} setHasSaved={this.props.setHasSaved} type={"textColor"} wireframe={this.props.wireframe} color={selected?selected.textColor:"#000000"}/>
                     </div>
                     <div className="wireframe-properties" >
                         <label className="wireframe-property-label" >Background:</label>
-                        <ColorPicker color={selected?selected.backgroundColor:"black"}/>
+                        <ColorPicker setHasChanged={this.props.setHasChanged} setHasSaved={this.props.setHasSaved}  type={"backgroundColor"} wireframe={this.props.wireframe} color={selected?selected.backgroundColor:"#000000"}/>
                     </div>
                     <div className="wireframe-properties">
                         <label className="wireframe-property-label" >Border Color:</label>
-                        <ColorPicker color={selected?selected.borderColor:"black"}/>
+                        <ColorPicker setHasChanged={this.props.setHasChanged} setHasSaved={this.props.setHasSaved}  type={"borderColor"} wireframe={this.props.wireframe} color={selected?selected.borderColor:"#000000"}/>
                     </div>
                     <div className="wireframe-properties">
                         <label className="wireframe-property-label" >Border Thickness </label>

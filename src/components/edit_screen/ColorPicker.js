@@ -25,6 +25,10 @@ class ColorPicker extends Component{
     
       handleChange = (color) => {
         this.setState({ color: color.rgb })
+        this.props.wireframe.selectedItem[this.props.type] = color.hex;
+        this.setState(this.props.wireframe.selectedItem);
+        this.props.setHasChanged(true);
+        this.props.setHasSaved(false);
       };
 
     render(){
