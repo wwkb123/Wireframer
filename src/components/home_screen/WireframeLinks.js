@@ -47,7 +47,7 @@ const connection = (state) => {
     return [
         { 
             collection: 'wireframeLists', 
-            orderBy:['timestamp', 'desc'], 
+            // orderBy:['timestamp', 'desc'], 
         },
       ];
 }

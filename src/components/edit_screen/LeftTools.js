@@ -28,6 +28,7 @@ class LeftTools extends Component{
     }
 
     handleChange = (e) => {
+        this.setState({hasChanged: true});
         e.persist();
         const target = e.target;
         this.setState(state => ({
@@ -41,8 +42,11 @@ class LeftTools extends Component{
     }
 
     handleCheckSaved = () => {
-        if(!this.state.hasSave && hasChanged){
+        if(!this.state.hasSave && this.state.hasChanged){
             this.setState({modalActive:true});
+        }
+        if(!this.state.hasChanged){
+            this.handleCloseWireframe();
         }
     }
 
