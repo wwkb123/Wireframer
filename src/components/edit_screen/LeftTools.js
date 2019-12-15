@@ -13,6 +13,8 @@ class LeftTools extends Component{
         owner: null,
         timestamp: null,
         modalActive : false,
+        hasSave: false,
+        hasChanged: false
     }
 
     handleModalOpen = (e) => {
@@ -36,6 +38,22 @@ class LeftTools extends Component{
 
     handleSaveWireframe = () => {
         this.props.handleSaveWireframe(this.state);
+    }
+
+    handleCheckSaved = () => {
+        if(!this.state.hasSave && hasChanged){
+            this.setState({modalActive:true});
+        }
+    }
+
+    handleSaveAndCloseWireframe = () => {
+        this.handleSaveWireframe();
+        this.props.history.push('/');
+        this.handleModalClose();
+    }
+
+    handleCloseWireframe = () => {
+        this.props.history.push('/');
         this.handleModalClose();
     }
     
@@ -71,13 +89,16 @@ class LeftTools extends Component{
                     waves="purple"
                     node="button" 
                     className="col s3 wireframe-top-button" 
-                    onClick={this.handleModalOpen}>Save
+                    onClick={this.handleSaveWireframe}>Save
                 </Button>
                 <Button small 
                     waves="teal"
                     node="button" 
-                    className="col s3 wireframe-top-button">Close
+                    className="col s3 wireframe-top-button"
+                    onClick={this.handleCheckSaved}>Close
                 </Button>
+
+
                 <Modal
                 bottomSheet={false}
                 fixedFooter={false}
@@ -100,12 +121,13 @@ class LeftTools extends Component{
                 }}
                 >
                     <section className="dialog_content">
-                        <p><strong>Are you sure you want to save this wireframe?</strong></p>
+                        <p><strong>You haven't saved your wireframe. Want to save your changes?</strong></p>
                     </section>
-                        <Button waves="orange" id="dialog_yes_button" className='btn' onClick={this.handleSaveWireframe}>Yes</Button>
-                        <Button waves="yellow" id="dialog_no_button" className='btn' onClick={this.handleModalClose}>No</Button>
+                        <Button waves="orange" id="dialog_yes_button" className='btn' onClick={this.handleSaveAndCloseWireframe}>Save and Quit</Button>
+                        <Button waves="yellow" id="dialog_no_button" className='btn' onClick={this.handleCloseWireframe}>Don't Save and Quit</Button>
+                        <Button waves="yellow" id="dialog_no_button" className='btn' onClick={this.handleModalClose}>Cancel</Button>
                     <footer className="dialog_footer">
-                        The list will not be retreivable.
+                        Once you close the wireframe without saving it, the work will be unretrievable.
                     </footer>
                 </Modal>
                 </div>

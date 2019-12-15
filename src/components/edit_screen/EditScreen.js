@@ -27,10 +27,10 @@ class EditScreen extends Component{
   }
 
 
-  handleSaveWork= (state) => {
+  handleSaveWireframe = (state) => {
     let fireStore = getFirestore();
     // eslint-disable-next-line
-    state.timestamp=fireStore.FieldValue.serverTimestamp();
+    state.timestamp = fireStore.FieldValue.serverTimestamp();
     if(this.props.match.params.id==='new')
       fireStore.collection('wireframeLists').add({
         name:state.name,
@@ -58,7 +58,7 @@ class EditScreen extends Component{
 
     return (
         <div className='row'>
-          <LeftTools work={wireframe} handleSaveWork={this.handleSaveWork}/>
+          <LeftTools history={this.props.history} wireframe={wireframe} handleSaveWireframe={this.handleSaveWireframe}/>
           <DisplayPlace/>
           <RightTools/>
         </div>
