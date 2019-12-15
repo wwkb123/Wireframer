@@ -90,18 +90,7 @@ class LeftTools extends Component{
         return (
             <div className="col s3 total-tool" >
                 <div className= "tool row" style={{height:"6.5%"}}>
-                <Button small 
-                    waves="red"
-                    node="button" 
-                    className="col s3 wireframe-top-button" 
-                    icon={<Icon>zoom_in</Icon>} >  
-                </Button>
-                <Button small 
-                    waves="green"
-                    node="button" 
-                    className="col s3 wireframe-top-button" 
-                    icon={<Icon>zoom_out</Icon>}>  
-                </Button>
+                
                 <Button small 
                     waves="purple"
                     node="button" 
