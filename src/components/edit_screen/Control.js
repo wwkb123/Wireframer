@@ -14,6 +14,10 @@ class Control extends Component{
         this.properties = attrs.properties;
         this.id = attrs.id
         this.selected = false
+        this.top = 50;
+        this.left = 50;
+        this.borderColor = 'black';
+        this.text = attrs.text;
     }
 
 }

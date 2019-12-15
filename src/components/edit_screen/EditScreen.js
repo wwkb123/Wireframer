@@ -55,8 +55,8 @@ class EditScreen extends Component{
       "type" : "",
       "centerX" : 0.0,
       "centerY" : 0.0,
-      "width" : 20.0,
-      "height" : 20.0,
+      "width" : 100.0,
+      "height" : 50.0,
       "properties" : [],
       "id" : this.state.currWireframe.items.length
     }
@@ -66,12 +66,21 @@ class EditScreen extends Component{
             break;
         case "label":
           attrs.type = "label"
+          attrs.text = "Prompt for Input"
+          attrs.width = 160
+          attrs.height = 25
             break;
         case "textButton":
           attrs.type = "textButton"
+          attrs.text = "Submit"
+          attrs.width = 70
+          attrs.height = 25
             break;
         case "textField":
           attrs.type = "textField"
+          attrs.text = "Input"
+          attrs.width = 200
+          attrs.height = 25
             break;
         default:
     }
