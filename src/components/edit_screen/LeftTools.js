@@ -13,8 +13,7 @@ class LeftTools extends Component{
         owner: null,
         timestamp: null,
         modalActive : false,
-        hasSaved: false,
-        hasChanged: false
+        currWireframe : this.props.wireframe
     }
 
     handleModalOpen = (e) => {
@@ -28,7 +27,8 @@ class LeftTools extends Component{
     }
 
     handleChange = (e) => {
-        this.setState({hasChanged: true});
+        this.setState({currWireframe:{hasChanged: true}});
+        this.setState({currWireframe:{hasSaved: false}});
         e.persist();
         const target = e.target;
         this.setState(state => ({
@@ -39,13 +39,15 @@ class LeftTools extends Component{
 
     handleSaveWireframe = () => {
         this.props.handleSaveWireframe(this.state);
+        this.setState({currWireframe:{hasChanged: false}});
+        this.setState({currWireframe:{hasSaved: true}});
     }
 
     handleCheckSaved = () => {
-        if(!this.state.hasSaved && this.state.hasChanged){
+        if(!this.state.currWireframe.hasSaved && this.state.currWireframe.hasChanged){
             this.setState({modalActive:true});
         }
-        if(!this.state.hasChanged){
+        if(!this.state.currWireframe.hasChanged){
             this.handleCloseWireframe();
         }
     }
@@ -63,6 +65,7 @@ class LeftTools extends Component{
     
     handleControlClick = (type) => {
         console.log(type);
+        this.setState({currWireframe:{hasChanged: true}});
         this.props.handleControlClick(type);
     }
 

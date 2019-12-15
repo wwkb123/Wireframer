@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { getFirestore } from 'redux-firestore';
 
 
-
+import Control from './Control';
 import LeftTools from './LeftTools';
 import RightTools from './RightTools';
 import EditArea from './EditArea';
@@ -24,7 +24,9 @@ class EditScreen extends Component{
       "centerY":null,
       "H_scrollbar_length": null,
       "V_scrollbar_length":null,
-      "items":[]
+      "items":[],
+      "hasSaved": false,
+      "hasChanged": false
     }
    
   }
@@ -49,21 +51,33 @@ class EditScreen extends Component{
   }
 
   handleControlClick = (type) => {
+    const attrs = {
+      "type" : "",
+      "centerX" : 0.0,
+      "centerY" : 0.0,
+      "width" : 20.0,
+      "height" : 20.0,
+      "properties" : [],
+      "id" : this.state.currWireframe.items.length
+    }
       switch(type){
         case "container":
-          this.state.currWireframe.items.push("container");
+          attrs.type = "container"
             break;
         case "label":
-          this.state.currWireframe.items.push("label");
+          attrs.type = "label"
             break;
         case "textButton":
-          this.state.currWireframe.items.push("textButton");
+          attrs.type = "textButton"
             break;
         case "textField":
-          this.state.currWireframe.items.push("textField");
+          attrs.type = "textField"
             break;
         default:
     }
+
+    const ctr = new Control(attrs);
+    this.state.currWireframe.items.push(ctr);
     this.setState(this.state.currWireframe.items);
     // console.log("items in EditScreen", this.state.currWireframe.items);
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
+import ControlCard from './ControlCard';
 
 class EditArea extends Component{
 
@@ -10,11 +11,13 @@ class EditArea extends Component{
         return (
             <div className="col s6 display-place total-tool">
 
-                {items && items.map(item => (
-                    <div>{item}</div>
-                ))}
+                
                 <Scrollbars autoHide={false} autoHideTimeout={500} autoHideDuration={200}>
-                <div style={{width:10010,height:1000}}></div>
+                <div style={{width:10010,height:1000}}>
+                    {items && items.map(item => (
+                        <ControlCard control={item}></ControlCard>
+                    ))}
+                </div>
                 </Scrollbars>
             </div>
         );
