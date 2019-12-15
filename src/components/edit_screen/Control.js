@@ -10,15 +10,15 @@ class Control extends Component{
         this.width = attrs.width;
         this.height = attrs.height;
         this.selected = false;
-        this.top = 50;
-        this.left = 50;
+        this.top = attrs.top?attrs.top:50;
+        this.left = attrs.left?attrs.left:50;
         this.text = attrs.text?attrs.text:"";
-        this.fontSize = 14;
+        this.fontSize = attrs.fontSize?attrs.fontSize:14;
         this.textColor = attrs.textColor?attrs.textColor:"#000000";
         this.backgroundColor = attrs.backgroundColor?attrs.backgroundColor:"#FFFFFF";
-        this.borderColor = '#000000';
+        this.borderColor = attrs.borderColor?attrs.borderColor:'#000000';
         this.borderThickness = attrs.borderThickness?attrs.borderThickness:1;
-        this.borderRadius = 0;
+        this.borderRadius = attrs.borderRadius?attrs.borderRadius:0;
     }
 
 }

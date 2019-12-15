@@ -3,11 +3,55 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { Icon, Button } from 'react-materialize';
 import ControlCard from './ControlCard';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import Control from './Control';
 
 class EditArea extends Component{
+
+    constructor(props){
+        super(props);
+    }
+
     state = {
         items : this.props.wireframe.controlList,
         selectedItem : null,
+    }
+
+    onKeyPressed = (event) => {
+        if ((event.ctrlKey || event.metaKey) && event.key === 'd') {
+            this.duplicateItem();
+        }
+    }
+
+    duplicateItem = () =>{
+        var item = this.state.selectedItem;
+        console.log("Select ", item); 
+        if(item){
+            var items = this.props.wireframe.controlList;
+
+            var attrs = {
+                "id" : items.length,
+                "type" : item.type,
+                "width" : item.width,
+                "height" : item.height,
+                "selected" : false,
+                "top" : item.top + 100,
+                "left" : item.left + 100,
+                "text" : item.text,
+                "fontSize" : item.fontSize,
+                "textColor" : item.textColor,
+                "backgroundColor" : item.backgroundColor,
+                "borderColor" : item.borderColor,
+                "borderThickness" : item.borderThickness,
+                "borderRadius" : item.borderRadius
+            }
+            const ctr = new Control(attrs);
+            items.push(ctr);
+
+            this.setState({items});
+            this.props.updateList(this.state.items);
+            this.props.setHasChanged(true);
+            this.props.setHasSaved(false);
+        }
     }
 
     handleSelect = (item, e) => {
@@ -36,7 +80,7 @@ class EditArea extends Component{
         this.setState({selectedItem: null});
         this.setState({items});
         this.props.updateList(this.state.items);
-        // this.props.updateSelectedItem(this.state.selectedItem);
+        this.props.updateSelectedItem(this.state.selectedItem);
         this.props.setHasChanged(true);
         this.props.setHasSaved(false);
     }
@@ -54,12 +98,14 @@ class EditArea extends Component{
             //     </div>
             //     </Scrollbars>
             // </div>
-            <div className="col s6 display-place total-tool">
+            <div className="col s6 display-place total-tool"  onKeyDown={this.onKeyPressed}
+            tabIndex="0">
             <TransformWrapper
             defaultScale={1}
             defaultPositionX={200}
             defaultPositionY={100}
             wheel={false}
+            pinch={true}
           >
             {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
               <React.Fragment>

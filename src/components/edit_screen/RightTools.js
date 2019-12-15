@@ -74,7 +74,7 @@ class RightTools extends Component{
                     </div>
                     <div className="wireframe-properties">
                         <label className="wireframe-property-label" >Border Thickness </label>
-                        <NumericInput min={0.5} max={20} value={selected ? selected.borderThickness : 1} step={0.5} onChange={this.onBorderThicknessChange}></NumericInput>px
+                        <NumericInput min={0} max={20} value={selected ? selected.borderThickness : 1} step={0.5} onChange={this.onBorderThicknessChange}></NumericInput>px
                     </div>
                     <div className="wireframe-properties">
                         <label className="wireframe-property-label" >Border Radius </label>

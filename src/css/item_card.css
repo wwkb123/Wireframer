@@ -147,9 +147,11 @@ cursor: pointer;
 }
 
 .gblcbk {
-  border: 0px solid #000000 !important;
+  border: none !important;
 }
 
 .invisible {
   display: none !important;
 }
+
+div:focus {outline: white solid 0px;}
