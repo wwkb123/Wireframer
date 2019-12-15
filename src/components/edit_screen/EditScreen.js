@@ -117,14 +117,14 @@ class EditScreen extends Component{
           attrs.text = "Submit"
           attrs.width = 70
           attrs.height = 25
-          attrs.backgroundColor = "gray"
+          attrs.backgroundColor = "#808080"
             break;
         case "textField":
           attrs.type = "textField"
           attrs.text = "Input"
           attrs.width = 200
           attrs.height = 25
-          attrs.textColor = "lightgray"
+          attrs.textColor = "#d3d3d3"
             break;
         default:
     }

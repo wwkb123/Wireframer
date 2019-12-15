@@ -8,9 +8,9 @@ class ColorPicker extends Component{
     state = {
         displayColorPicker: false,
         color: {
-          r: '241',
-          g: '112',
-          b: '19',
+          r: '0',
+          g: '0',
+          b: '0',
           a: '1',
         },
       };
@@ -28,18 +28,27 @@ class ColorPicker extends Component{
       };
 
     render(){
+      var color = this.props.color;
+      var result = null;
+      if(color){
+        result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+        result = result ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+          a: 1
+        } : null;
+      }
         const styles = reactCSS({
             'default': {
               color: {
-                width: '36px',
-                height: '14px',
-                borderRadius: '100%',
-                background: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`,
+                width: '20px',
+                height: '20px',
+                background: `rgba(${ result?result.r:this.state.color.r }, ${ result?result.g:this.state.color.g }, ${ result?result.b:this.state.color.b }, ${ result?result.a:this.state.color.a })`,
               },
               swatch: {
                 padding: '5px',
                 background: '#fff',
-                borderRadius: '100%',
                 boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
                 display: 'inline-block',
                 cursor: 'pointer',

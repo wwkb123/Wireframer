@@ -58,15 +58,15 @@ class RightTools extends Component{
                     </div>
                     <div className="wireframe-properties" >
                         <label className="wireframe-property-label" >Text Color: </label>
-                        <ColorPicker />
+                        <ColorPicker color={selected?selected.textColor:"black"}/>
                     </div>
                     <div className="wireframe-properties" >
                         <label className="wireframe-property-label" >Background:</label>
-                        <ColorPicker />
+                        <ColorPicker color={selected?selected.backgroundColor:"black"}/>
                     </div>
                     <div className="wireframe-properties">
                         <label className="wireframe-property-label" >Border Color:</label>
-                        <ColorPicker />
+                        <ColorPicker color={selected?selected.borderColor:"black"}/>
                     </div>
                     <div className="wireframe-properties">
                         <label className="wireframe-property-label" >Border Thickness </label>

@@ -16,7 +16,7 @@ class Control extends Component{
         this.fontSize = 14;
         this.textColor = attrs.textColor?attrs.textColor:"#000000";
         this.backgroundColor = attrs.backgroundColor?attrs.backgroundColor:"#FFFFFF";
-        this.borderColor = 'black';
+        this.borderColor = '#000000';
         this.borderThickness = 1;
         this.borderRadius = 0;
     }
