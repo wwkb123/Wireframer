@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import todoJson from './TestTodoListData.json'
 import { getFirestore } from 'redux-firestore';
+import { Redirect } from 'react-router-dom';
 
 class DatabaseTester extends React.Component {
 
@@ -34,6 +35,9 @@ class DatabaseTester extends React.Component {
     }
 
     render() {
+        if (!this.props.auth.uid) {
+            return <Redirect to="/login" />;
+        }
         return (
             <div>
                 <button onClick={this.handleClear}>Clear Database</button>

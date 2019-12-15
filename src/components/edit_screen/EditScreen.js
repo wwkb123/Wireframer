@@ -111,6 +111,7 @@ class EditScreen extends Component{
           attrs.text = "Prompt for Input"
           attrs.width = 160
           attrs.height = 25
+          attrs.borderThickness = 0
             break;
         case "textButton":
           attrs.type = "textButton"
