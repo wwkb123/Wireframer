@@ -19,8 +19,8 @@ class EditScreen extends Component{
         id: null,
         owner: this.props.wireframe?this.props.wireframe.owner:"",
         name: this.props.wireframe?this.props.wireframe.name:"",
-        screenHeight: 100,
-        screenWeidth: 100,
+        screenHeight: this.props.wireframe?this.props.wireframe.screenHeight:500,
+        screenWidth: this.props.wireframe?this.props.wireframe.screenWidth:500,
         centerX:null,
         centerY:null,
         H_scrollbar_length: null,
@@ -47,6 +47,14 @@ class EditScreen extends Component{
 
   setHasSaved = (value) => {
     this.setState({hasSaved:value});
+  }
+
+  setWidth = (width) => {
+    this.setState({screenWidth:width});
+  }
+
+  setHeight = (height) => {
+    this.setState({screenHeight:height});
   }
 
   handleSaveWireframe = (state) => {
@@ -77,17 +85,23 @@ class EditScreen extends Component{
     state.timestamp = fireStore.FieldValue.serverTimestamp();
     if(this.props.match.params.id==='new')
       fireStore.collection('wireframeLists').add({
+        id: state.owner,
         name:state.name,
         owner:state.owner,
         timestamp:state.timestamp,
-        controlList: controlList
+        controlList: controlList,
+        screenHeight: this.state.screenHeight,
+        screenWidth: this.state.screenWidth,
       })
     else
       fireStore.collection('wireframeLists').doc(this.props.match.params.id).update({
+        id: state.owner,
         name:state.name,
         owner:state.owner,
         timestamp:state.timestamp,
-        controlList: controlList
+        controlList: controlList,
+        screenHeight: this.state.screenHeight,
+        screenWidth: this.state.screenWidth,
       })
   }
 
@@ -150,7 +164,8 @@ class EditScreen extends Component{
           setHasChanged={this.setHasChanged.bind(this)} setHasSaved={this.setHasSaved.bind(this)} updateList={this.updateList.bind(this)}/>
           <EditArea wireframe={this.state} updateList={this.updateList.bind(this)} setHasChanged={this.setHasChanged.bind(this)} setHasSaved={this.setHasSaved.bind(this)}
           updateSelectedItem={this.updateSelectedItem.bind(this)} />
-          <RightTools wireframe={this.state} setHasChanged={this.setHasChanged.bind(this)} setHasSaved={this.setHasSaved.bind(this)} updateList={this.updateList.bind(this)}/>
+          <RightTools wireframe={this.state} setHasChanged={this.setHasChanged.bind(this)} setHasSaved={this.setHasSaved.bind(this)} updateList={this.updateList.bind(this)}
+          setHeight={this.setHeight.bind(this)} setWidth={this.setWidth.bind(this)}/>
         </div>
     );
   }

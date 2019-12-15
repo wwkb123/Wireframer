@@ -79,8 +79,8 @@ class WireframeCard extends React.Component {
                         <section className="dialog_content">
                             <p><strong>Are you sure to delete it?</strong></p>
                         </section>
-                            <Button waves="orange" id="dialog_yes_button" className='btn' onClick={this.deleteList}>Yes</Button>
-                            <Button waves="orange" id="dialog_no_button" className='btn' onClick={this.handleModalClose}>No</Button>
+                            <Button waves="orange" id="dialog_yes_button" className='btn' onClick={this.deleteList} style={{margin: '10px'}}>Yes</Button>
+                            <Button waves="orange" id="dialog_no_button" className='btn' onClick={this.handleModalClose} style={{margin: '10px'}}>No</Button>
                         <footer className="dialog_footer">
                             Once the list is deleted, it will be unretreivable.
                         </footer>

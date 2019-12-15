@@ -14,6 +14,8 @@ class EditArea extends Component{
     state = {
         items : this.props.wireframe.controlList,
         selectedItem : null,
+        screenHeight : this.props.wireframe.screenHeight,
+        screenWidth : this.props.wireframe.screenWidth
     }
 
     onKeyPressed = (event) => {
@@ -113,6 +115,7 @@ class EditArea extends Component{
 
     render(){
         var items = this.props.wireframe.controlList;
+       
         console.log("items", items);
         return (
             // <div className="col s6 display-place total-tool">
@@ -151,8 +154,8 @@ class EditArea extends Component{
                 </Button>
                 <Scrollbars autoHide={false} autoHideTimeout={500} autoHideDuration={200}>
                 <TransformComponent>
-                <div style={{ height: "100%", width: "100%" }}>
-                <div style={{width:1000,height:1000}} onClick={this.handleUnselect}>
+                <div id="content" style={{border:'2px solid gray', width:this.props.wireframe.screenWidth?this.props.wireframe.screenWidth+'px':500, height:this.props.wireframe.screenHeight?this.props.wireframe.screenHeight+'px':500}}>
+                <div style={{ height: "100%", width: "100%" }} onClick={this.handleUnselect}>
                     {items && items.map(item => (
                         <ControlCard key={item.id} control={item} handleSelect={this.handleSelect}></ControlCard>
                     ))}

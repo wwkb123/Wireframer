@@ -20,6 +20,20 @@ class RightTools extends Component{
         this.props.setHasSaved(false);
     }
 
+    onWidthChange = (valueAsNumber, valueAsString, input) => {
+        this.props.setWidth(valueAsNumber);
+        this.setState(this.props.wireframe);
+        this.props.setHasChanged(true);
+        this.props.setHasSaved(false);
+    }
+
+    onHeightChange = (valueAsNumber, valueAsString, input) => {
+        this.props.setHeight(valueAsNumber);
+        this.setState(this.props.wireframe);
+        this.props.setHasChanged(true);
+        this.props.setHasSaved(false);
+    }
+
     onFontSizeChange = (valueAsNumber, valueAsString, input) => {
         this.props.wireframe.selectedItem["fontSize"] = valueAsNumber;
         this.setState(this.props.wireframe.selectedItem);
@@ -43,6 +57,8 @@ class RightTools extends Component{
     
     render(){
         const selected = this.props.wireframe.selectedItem;
+        const width = this.props.wireframe.screenWidth;
+        const height = this.props.wireframe.screenHeight;
         var className = "col s3 total-tool invisible";
         if(this.props.wireframe)
             if(selected)
@@ -50,8 +66,20 @@ class RightTools extends Component{
             console.log("Select item is ", this.props.wireframe.selectedItem);
             
         return (
+            <div>
+                <div className="col s3" style={{border:"2px solid black"}}>
+                    <div className="" style={{}}>
+                        <label className="wireframe-property-label" >Screen Width: </label>
+                        <NumericInput min={50} max={10000} value={width ? width : 500} step={1} onChange={this.onWidthChange}></NumericInput>px
+                    </div>
+                    <div className="" style={{}}>
+                        <label className="wireframe-property-label" >Screen Height: </label>
+                        <NumericInput min={50} max={10000} value={height ? height : 500} step={1} onChange={this.onHeightChange}></NumericInput>px
+                    </div>
+            </div>
             <div className={className}>
                 <div className="tool row" style={{height:"100%"}}>
+                    
                     <div className="wireframe-properties">
                         <div className="wireframe-property-label" >Properties</div>
                         <TextInput placeholder="Insert here" className="wireframe-input" id="text" value={selected ? selected.text : ""} onChange={this.onChange}/>
@@ -82,6 +110,7 @@ class RightTools extends Component{
                     </div>
                     <div className="wireframe-properties"></div>
                 </div>
+            </div>
             </div>
         );
     }

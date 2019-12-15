@@ -129,9 +129,9 @@ class LeftTools extends Component{
                     <section className="dialog_content">
                         <p><strong>You haven't saved your wireframe. Want to save your changes?</strong></p>
                     </section>
-                        <Button waves="orange" id="dialog_yes_button" className='btn' onClick={this.handleSaveAndCloseWireframe}>Save and Quit</Button>
-                        <Button waves="yellow" id="dialog_no_button" className='btn' onClick={this.handleCloseWireframe}>Don't Save and Quit</Button>
-                        <Button waves="yellow" id="dialog_no_button" className='btn' onClick={this.handleModalClose}>Cancel</Button>
+                        <Button waves="orange" id="dialog_yes_button" className='btn' onClick={this.handleSaveAndCloseWireframe} style={{margin: '10px'}}>Save and Quit</Button>
+                        <Button waves="yellow" id="dialog_no_button" className='btn' onClick={this.handleCloseWireframe} style={{margin: '10px'}}>Don't Save and Quit</Button>
+                        <Button waves="yellow" id="dialog_no_button" className='btn' onClick={this.handleModalClose} style={{margin: '10px'}}>Cancel</Button>
                     <footer className="dialog_footer">
                         Once you close the wireframe without saving it, the work will be unretrievable.
                     </footer>
