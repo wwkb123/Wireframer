@@ -70,11 +70,11 @@ class RightTools extends Component{
                 <div className="col s3" style={{border:"2px solid black"}}>
                     <div className="" style={{}}>
                         <label className="wireframe-property-label" >Screen Width: </label>
-                        <NumericInput min={50} max={10000} value={width ? width : 500} step={1} onChange={this.onWidthChange}></NumericInput>px
+                        <NumericInput min={1} max={5000} value={width ? width : 500} step={1} onChange={this.onWidthChange}></NumericInput>px
                     </div>
                     <div className="" style={{}}>
                         <label className="wireframe-property-label" >Screen Height: </label>
-                        <NumericInput min={50} max={10000} value={height ? height : 500} step={1} onChange={this.onHeightChange}></NumericInput>px
+                        <NumericInput min={1} max={5000} value={height ? height : 500} step={1} onChange={this.onHeightChange}></NumericInput>px
                     </div>
             </div>
             <div className={className}>

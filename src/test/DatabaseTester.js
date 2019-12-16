@@ -37,7 +37,7 @@ class DatabaseTester extends React.Component {
     }
 
     render() {
-        if (!this.props.auth.uid) {
+        if (!this.props.auth.uid || this.props.firebase.profile.type !== "admin") {
             return <Redirect to="/login" />;
         }
         return (

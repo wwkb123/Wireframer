@@ -11,12 +11,12 @@ class Navbar extends React.Component {
   render() {
     const { auth, profile } = this.props;
     const links = auth.uid ? <LoggedInLinks profile={profile} /> : <LoggedOutLinks />;
-
+    const adminPage = profile.type ===  "admin"? <Link to="/databaseTester" className="tester">databseTester</Link>:<div></div>
     return (
       <nav className="nav-wrapper grey darken-3">
         <div className="container">
           <Link to="/" className="brand-logo" >Wireframer!</Link>
-          <Link to="/databaseTester" className="tester">databseTester</Link>
+          { adminPage }
           {links}
         </div>
       </nav>
