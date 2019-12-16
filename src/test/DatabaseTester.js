@@ -25,7 +25,9 @@ class DatabaseTester extends React.Component {
                     name: todoListJson.name,
                     owner: todoListJson.owner,
                     controlList: todoListJson.controlList,
-                    timestamp: fireStore.FieldValue.serverTimestamp()
+                    timestamp: fireStore.FieldValue.serverTimestamp(),
+                    screenHeight: todoListJson.screenHeight,
+                    screenWidth: todoListJson.screenWidth,
                 }).then(() => {
                     console.log("DATABASE RESET");
                 }).catch((err) => {
