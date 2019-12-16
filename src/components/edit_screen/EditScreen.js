@@ -28,7 +28,8 @@ class EditScreen extends Component{
         controlList:this.props.wireframe?this.props.wireframe.controlList:[],
         hasSaved: false,
         hasChanged: false,
-        selectedItem: null
+        selectedItem: null,
+        currId: null
     }
 
   }
@@ -82,25 +83,46 @@ class EditScreen extends Component{
       controlList.push(itemToPush);
     }
     console.log("To be upload: ", controlList, this.state.screenHeight, this.state.screenWidth);
+
     state.timestamp = fireStore.FieldValue.serverTimestamp();
-    if(this.props.match.params.id==='new')
-      fireStore.collection('wireframeLists').add({
-        name:state.name,
-        owner:state.owner,
-        timestamp:state.timestamp,
-        controlList: controlList,
-        screenHeight: this.state.screenHeight,
-        screenWidth: this.state.screenWidth,
-      })
-    else
-      fireStore.collection('wireframeLists').doc(this.props.match.params.id).update({
-        name:state.name,
-        owner:state.owner,
-        timestamp:state.timestamp,
-        controlList: controlList,
-        screenHeight: this.state.screenHeight,
-        screenWidth: this.state.screenWidth,
-      })
+    var docId = this.state.currId?this.state.currId:this.props.match.params.id;
+    console.log("doc id ", docId);
+    fireStore.get({collection:"wireframeLists", doc: docId}).then(e=> {
+      if(e.exists){
+        fireStore.collection('wireframeLists').doc(docId).update({
+          name:state.name,
+          owner:state.owner,
+          timestamp:state.timestamp,
+          controlList: controlList,
+          screenHeight: this.state.screenHeight,
+          screenWidth: this.state.screenWidth,
+        })
+      }else{
+        fireStore.collection('wireframeLists').add({
+          name:state.name,
+          owner:state.owner,
+          timestamp:state.timestamp,
+          controlList: controlList,
+          screenHeight: this.state.screenHeight,
+          screenWidth: this.state.screenWidth,
+        }).then(res=>{
+          this.setState({currId:res.id})
+          console.log(res.id);
+        });
+        
+      }
+    }).catch(err=>{
+      console.log(err);
+    })
+    
+    // if(this.props.match.params.id==='new'){  
+      
+      
+    // }
+    // else{
+
+    // }
+      
   }
 
   handleControlClick = (type) => {
