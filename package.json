@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "firebase": "^7.2.3",
+    "firebase": "^10.9.0",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.24.0",
     "react": "^16.11.0",
